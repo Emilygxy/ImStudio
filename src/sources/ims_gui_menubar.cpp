@@ -23,6 +23,12 @@ void ImStudio::GUI::ShowMenubar()
             };
             #endif
 
+            if (ImGui::MenuItem("Export To Json"))
+            {
+                ImGui::LogText("%s", "Not Yet");
+                //open a dialog
+            };
+
             if (ImGui::MenuItem("Exit"))
             {
                 state = false;

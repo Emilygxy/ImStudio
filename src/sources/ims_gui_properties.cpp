@@ -74,7 +74,7 @@ void ImStudio::GUI::ShowProperties()
                     }
                 }
 
-                ImGui::Combo("Object", &selected_index,  prop_objects_arr.data(), prop_objects_arr.size());
+                ImGui::Combo("Cur Object", &selected_index,  prop_objects_arr.data(), prop_objects_arr.size());
 
                 selected_obj_ptr = bw.getbaseobj(idof_prop_objects_arr[selected_index]);
                 bw.selected_obj_id  = selected_obj_ptr->id;
