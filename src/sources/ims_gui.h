@@ -13,8 +13,18 @@
 #include "JsClipboardTricks.h"
 #endif
 
+#include "nlohmann/json.hpp"
+
+// for convenience
+using ImJson = nlohmann::json;
+
 namespace ImStudio
 {
+    template <typename T>
+    struct ImSerializer {
+        static void to_json(ImJson& j, const T& value);
+        static void from_json(const ImJson& j, T& value);
+    };
 
     struct GUI
     {
@@ -56,6 +66,20 @@ namespace ImStudio
         bool                    child_stack                = false;                // Show Stack Tool
         bool                    child_resources            = false;                // Show Help Resources
         bool                    child_about                = false;                // Show About Window
+
+        std::shared_ptr<imgui_addons::ImGuiFileBrowser> pFileDialog{ nullptr };
     };
+
+    template<typename T>
+    inline void ImSerializer<T>::to_json(ImJson& j, const T& value)
+    {
+
+    }
+
+    template<typename T>
+    inline void ImSerializer<T>::from_json(const ImJson& j, T& value)
+    {
+
+    }
 
 }

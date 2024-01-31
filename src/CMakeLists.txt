@@ -19,6 +19,7 @@ target_include_directories(${TARGET} PRIVATE SYSTEM ${CMAKE_CURRENT_SOURCE_DIR}/
 target_include_directories(${TARGET} PRIVATE SYSTEM ${CMAKE_CURRENT_SOURCE_DIR}/utils)
 target_include_directories(${TARGET} PRIVATE SYSTEM ${IMGUI_INCLUDE_DIRS})
 target_include_directories(${TARGET} PRIVATE SYSTEM ${FMT_INCLUDE_DIRS})
+target_include_directories(${TARGET} PRIVATE SYSTEM ${CMAKE_CURRENT_LIST_DIR}/third-party/Json)
 target_include_directories(${TARGET} PRIVATE SYSTEM ${GLFW_INCLUDE_DIR})
 
 target_link_libraries(${TARGET} PRIVATE ${IMGUI_LIBRARIES})

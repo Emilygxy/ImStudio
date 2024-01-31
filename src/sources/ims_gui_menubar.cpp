@@ -25,7 +25,8 @@ void ImStudio::GUI::ShowMenubar()
 
             if (ImGui::MenuItem("Export To Json"))
             {
-                ImGui::LogText("%s", "Not Yet");
+                ImJson json;
+                //ImStudio::ImSerializer::to_json(json, *this);
                 //open a dialog
             };
 
