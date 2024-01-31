@@ -5,6 +5,7 @@ add_library(imgui
         ${CMAKE_SOURCE_DIR}/src/third-party/imgui/imgui_draw.cpp
         ${CMAKE_SOURCE_DIR}/src/third-party/imgui/imgui_tables.cpp
         ${CMAKE_SOURCE_DIR}/src/third-party/imgui/imgui_widgets.cpp
+        ${CMAKE_SOURCE_DIR}/src/third-party/imgui/imgui_file_browser/ImGuiFileBrowser.cpp
 
         #ImGui Backends
         ${CMAKE_SOURCE_DIR}/src/third-party/imgui/backends/imgui_impl_glfw.cpp
@@ -18,6 +19,7 @@ add_dependencies(imgui glfw)
 
 list(APPEND IMGUI_INCLUDE_DIRS
         ${CMAKE_SOURCE_DIR}/src/third-party/imgui
+        ${CMAKE_SOURCE_DIR}/src/third-party/imgui_file_browser
         ${CMAKE_SOURCE_DIR}/src/third-party/imgui/backends
         ${CMAKE_SOURCE_DIR}/src/third-party/imgui/misc/cpp)
 list(APPEND IMGUI_LIBRARIES imgui)

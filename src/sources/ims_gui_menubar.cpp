@@ -1,4 +1,5 @@
 #include "ims_gui.h"
+#include <iostream>
 
 void ImStudio::GUI::ShowMenubar()
 {
@@ -25,9 +26,14 @@ void ImStudio::GUI::ShowMenubar()
 
             if (ImGui::MenuItem("Export To Json"))
             {
-                ImJson json;
-                //ImStudio::ImSerializer::to_json(json, *this);
-                //open a dialog
+                ImGui::OpenPopup("Save##Json");
+                if (mFileDialog->showFileDialog("Save##Json", imgui_addons::ImGuiFileBrowser::DialogMode::OPEN, ImVec2(700, 310), ".json,*.*"))
+                {
+                    std::cout << mFileDialog->selected_fn << std::endl;      // The name of the selected file or directory in case of Select Directory dialog mode
+                    std::cout << mFileDialog->selected_path << std::endl;    // The absolute path to the selected file
+                    std::cout << mFileDialog->ext << std::endl;              // Access ext separately (For SAVE mode)
+                    //Do writing of files based on extension here
+                }
             };
 
             if (ImGui::MenuItem("Exit"))

@@ -1,5 +1,10 @@
 #include "ims_gui.h"
 
+ImStudio::GUI::GUI()
+    :mFileDialog(std::make_shared<imgui_addons::ImGuiFileBrowser>())
+{
+}
+
 void ImStudio::GUI::ShowOutputWorkspace()
 {
     ImGui::SetNextWindowPos(ot_P);
@@ -18,4 +23,13 @@ void ImStudio::GUI::ShowOutputWorkspace()
         ImStudio::GenerateCode(&output, &bw);
     }
     ImGui::End();
+}
+
+std::shared_ptr<imgui_addons::ImGuiFileBrowser> ImStudio::GUI::GetFileDialog()
+{
+    if (!mFileDialog)
+    {
+        mFileDialog = std::make_shared<imgui_addons::ImGuiFileBrowser>();
+    }
+    return mFileDialog;
 }

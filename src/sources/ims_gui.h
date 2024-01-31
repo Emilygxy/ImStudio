@@ -13,6 +13,7 @@
 #include "JsClipboardTricks.h"
 #endif
 
+#include "imgui_file_browser/ImGuiFileBrowser.h"
 #include "nlohmann/json.hpp"
 
 // for convenience
@@ -28,6 +29,8 @@ namespace ImStudio
 
     struct GUI
     {
+        GUI();
+        ~GUI(){}
         bool                    state                      = true;                 // Alive
         bool                    compact                    = false;                // Compact/Spacious Switch
         bool                    wksp_create                = true;                 // Workspace "Create"
@@ -67,7 +70,9 @@ namespace ImStudio
         bool                    child_resources            = false;                // Show Help Resources
         bool                    child_about                = false;                // Show About Window
 
-        std::shared_ptr<imgui_addons::ImGuiFileBrowser> pFileDialog{ nullptr };
+        std::shared_ptr<imgui_addons::ImGuiFileBrowser> GetFileDialog();
+
+        std::shared_ptr<imgui_addons::ImGuiFileBrowser> mFileDialog{ nullptr };
     };
 
     template<typename T>
