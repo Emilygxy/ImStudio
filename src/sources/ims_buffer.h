@@ -29,7 +29,8 @@ namespace ImStudio
       Object *                getobj                  (int id);
       BaseObject *            getbaseobj              (int id);
       void                    create                  (std::string type_, bool atcursor = false);
-      void                    saveScene();
+      void                    saveScene(const std::string& path);
+      void                    loadScene(const std::string& path) {}
   };
 
 }

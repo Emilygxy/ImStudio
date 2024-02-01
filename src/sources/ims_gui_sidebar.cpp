@@ -18,12 +18,6 @@ void ImStudio::GUI::ShowSidebar()
         "(Tools > Demo Window) and imgui/imgui_demo.cpp");
         ImGui::Separator();
 
-        if (ImGui::Button("Save Scene"))
-        {
-            bw.saveScene();
-        }
-        ImGui::Separator();
-
         //ANCHOR SIDEBAR.PRIMITIVES
         ImGui::Text("Primitives");
         ImGui::Separator();

@@ -3,6 +3,8 @@
 
 void ImStudio::GUI::ShowMenubar()
 {
+    bool open = false, saveScene = false, saveSceneAs = false;
+
     ImGui::SetNextWindowPos(mb_P);
     ImGui::SetNextWindowSize(mb_S);
     ImGui::Begin("Menubar", NULL,
@@ -24,20 +26,21 @@ void ImStudio::GUI::ShowMenubar()
             };
             #endif
 
-            if (ImGui::MenuItem("Export To Json"))
+            if (ImGui::BeginMenu("Save & Load"))
             {
-                ImGui::OpenPopup("Save##Json");
-                if (mFileDialog->showFileDialog("Save##Json", imgui_addons::ImGuiFileBrowser::DialogMode::OPEN, ImVec2(700, 310), ".json,*.*"))
-                {
-                    std::cout << mFileDialog->selected_fn << std::endl;      // The name of the selected file or directory in case of Select Directory dialog mode
-                    std::cout << mFileDialog->selected_path << std::endl;    // The absolute path to the selected file
-                    std::cout << mFileDialog->ext << std::endl;              // Access ext separately (For SAVE mode)
-                    //Do writing of files based on extension here
-                }
-            };
+                if (ImGui::MenuItem("Load Scene", NULL))
+                    open = true;
+                if (ImGui::MenuItem("Save Scene", NULL))
+                    saveScene = true;
+                if (ImGui::MenuItem("Save Scene As", NULL))
+                    saveSceneAs = true;
+
+                ImGui::EndMenu();
+            }
 
             if (ImGui::MenuItem("Exit"))
             {
+                bw.saveScene(ImStudio::s_defaultSceneResourcePath);
                 state = false;
             };
             ImGui::EndMenu();
@@ -117,6 +120,24 @@ void ImStudio::GUI::ShowMenubar()
         }
     }
     
+    //Remember the name to ImGui::OpenPopup() and showFileDialog() must be same...
+    if (open)
+        ImGui::OpenPopup("Load Scene");
+    if (saveScene)
+        bw.saveScene(ImStudio::s_defaultSceneResourcePath);
+    if (saveSceneAs)
+        ImGui::OpenPopup("Save Scene As");
+    /* Optional third parameter. Support opening only compressed rar/zip files.
+     * Opening any other file will show error, return false and won't close the dialog.
+     */
+    if (mFileDialog->showFileDialog("Load Scene", imgui_addons::ImGuiFileBrowser::DialogMode::OPEN, ImVec2(700, 310), ".gwgui"))
+    {
+        bw.loadScene(mFileDialog->selected_path);
+    }
+    if (mFileDialog->showFileDialog("Save Scene As", imgui_addons::ImGuiFileBrowser::DialogMode::SAVE, ImVec2(700, 310), ".gwgui"))
+    {
+        bw.saveScene(mFileDialog->selected_path + mFileDialog->ext);
+    }
 
     ImGui::End();
 }

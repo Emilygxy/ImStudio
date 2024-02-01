@@ -21,6 +21,9 @@ using ImJson = nlohmann::json;
 
 namespace ImStudio
 {
+    static std::string s_RerouecePath = "../resources";
+    static std::string s_defaultSceneResourcePath = "../resources/data/scene.gwgui";
+
     template <typename T>
     struct ImSerializer {
         static void to_json(ImJson& j, const T& value);

@@ -1,4 +1,5 @@
 #include "ims_buffer.h"
+#include <iostream>
 
 void ImStudio::BufferWindow::drawall()
 {
@@ -192,6 +193,7 @@ void ImStudio::BufferWindow::create(std::string type_, bool atcursor)
     selected_obj_id = idgen; // select the new object
 }
 
-void ImStudio::BufferWindow::saveScene()
+void ImStudio::BufferWindow::saveScene(const std::string& path)
 {
+    std::cout << "You will save the scene to "<< path << std::endl;
 }
