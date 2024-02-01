@@ -191,3 +191,7 @@ void ImStudio::BufferWindow::create(std::string type_, bool atcursor)
     }
     selected_obj_id = idgen; // select the new object
 }
+
+void ImStudio::BufferWindow::saveScene()
+{
+}
